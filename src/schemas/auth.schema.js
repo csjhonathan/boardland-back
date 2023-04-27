@@ -22,5 +22,6 @@ export const loginSchema = Joi.object({
 		.max(30)
 		.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]+$/)
 		.messages({'string.pattern.base': 'A senha deve ter 8 ou mais caracteres e conter letras, números e caracteres especiais.'})
-		.required()
+		.required(),
+	check: Joi.boolean().truthy('true').default(false)
 });
