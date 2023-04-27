@@ -1,4 +1,4 @@
-import { db } from '../database/database.connection.js';
+import { users } from '../database/collections.js';
 import bcrypt from 'bcrypt';
 
 export async function signUp (req, res) {
@@ -6,13 +6,13 @@ export async function signUp (req, res) {
 	
 	try {
 		
-		console.log(await db.collection('users').find().toArray());
+		console.log(await users.find().toArray());
 
-		const user = await db.collection('users').findOne({ email });
+		const user = await users.findOne({ email });
 		if (user) return res.status(409).send('E-mail já cadastrado!');
 		
 		const hash = bcrypt.hashSync(password, 10);
-		await db.collection('users').insertOne({name, email, address, image, password: hash});
+		await users.insertOne({name, email, address, image, password: hash});
 
 		res.sendStatus(201);
 
@@ -22,6 +22,6 @@ export async function signUp (req, res) {
 }
 
 export async function signIn (req, res) {
-	const {email, password} = req.body;
+	// const {email, password} = req.body;
 	
 }
