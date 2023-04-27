@@ -16,4 +16,6 @@ try{
 	console.log( err.message, chalk.red( 'DB CONNECTION FAILED' ) );
 }
 
-export const db = mongoClient.db();
+const db = mongoClient.db();
+
+export default db;
