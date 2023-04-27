@@ -1,5 +1,5 @@
 import { games } from '../database/collections.js';
-
+import { ObjectId } from 'bson';
 export async function findAllGames(req, res) {
 
 	try{
@@ -26,4 +26,18 @@ export async function postGame(req, res){
 		console.log(err.message);
 		res.status( 500 ).send( {message : err.message} );
 	}
+}
+
+export async function getGameById(req, res){
+
+	const {ID} = req.params;
+	if(!ID)return res.status(404).send({message : 'Jogo não encontrado'});
+	try{
+		const game = await games.findOne({_id : new ObjectId(ID)});
+		if(!game) return res.status(404).send({message : 'Jogo não encontrado'});
+		res.status(200).send(game);
+	}catch(err){
+		res.status(500).send({message : err.message});
+	}
+	
 }

@@ -1,3 +1,4 @@
+import { users } from '../database/collections.js';
 import { session, users } from '../database/collections.js';
 import bcrypt from 'bcrypt';
 import Jwt from 'jsonwebtoken';
