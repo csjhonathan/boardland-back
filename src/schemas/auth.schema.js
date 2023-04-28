@@ -1,7 +1,7 @@
 import Joi from 'joi';
 
 export const userSchema = Joi.object({
-	name: Joi.string().min(6).regex(/^[\w]{3,}(\s[\w]{3,})+$/).message('Informe o nome e sobrenome.').required(),
+	name: Joi.string().min(6).regex(/^[\w]{3,}(\s[\w]{3,})+$/).regex(/^[\p{L}Á-ú]{3,}(\s[\p{L}Á-ú]{3,})+$/u).message('Informe o nome e sobrenome.').required(),
 	email: Joi.string().min(5).email().message('O campo deve ser em E-mail válido.').required(),
 	address: Joi.string().min(10).message('Informe seu endereço completo.').required(),
 	image: Joi.string().uri({ scheme: ['http', 'https'] }).min(5).message('O campo deve ser uma URL válida.').required(),
