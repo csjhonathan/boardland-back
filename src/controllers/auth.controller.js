@@ -1,4 +1,3 @@
-import { users } from '../database/collections.js';
 import { session, users } from '../database/collections.js';
 import bcrypt from 'bcrypt';
 import Jwt from 'jsonwebtoken';
@@ -24,7 +23,7 @@ export async function signUp (req, res) {
 }
 
 export async function signIn (req, res) {
-	const {email, password, check} = req.body;
+	const {email, password} = req.body;
 
 	try {
 		
@@ -34,18 +33,19 @@ export async function signIn (req, res) {
 		const correctPassword = bcrypt.compareSync(password, user.password);
 		if (!correctPassword) return res.status(401).send('Senha incorreta!');
 
-		const payload = { idUser: user._id };
-		const token = Jwt.sign(payload, process.env.JWT_SECRET);
+		if (user && bcrypt.compareSync(password, user.password)) {
 
-		if (user) {
+			const payload = { idUser: user._id };
+			const token = Jwt.sign(payload, process.env.JWT_SECRET);
+
 			// apagar a linha de baixo se for fazer Logout
 			await session.drop({email});
 
 			delete user.password;
 			delete user._id;
-			await session.insertOne({...user, idUser: payload.idUser, check, token});
-
-			res.status(200).send(await session.find({email}).toArray());
+			await session.insertOne({...user, idUser: payload.idUser, token});
+			
+			res.status(200).send({idUser: payload.idUser, token, name: user.name, email: user.email, address: user.address, image: user.image});
 		}
 		
 	} catch (err) {
