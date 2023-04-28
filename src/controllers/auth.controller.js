@@ -1,9 +1,9 @@
-import { users } from '../database/collections.js';
 import { session, users } from '../database/collections.js';
 import bcrypt from 'bcrypt';
 import Jwt from 'jsonwebtoken';
 
 export async function signUp (req, res) {
+	
 	const {name, email, address, image, password} = req.body;
 	
 	try {
