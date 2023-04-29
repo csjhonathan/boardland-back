@@ -38,9 +38,6 @@ export async function signIn (req, res) {
 			const payload = { idUser: user._id };
 			const token = Jwt.sign(payload, process.env.JWT_SECRET);
 
-			// apagar a linha de baixo se for fazer Logout
-			await session.drop({email});
-
 			delete user.password;
 			delete user._id;
 			await session.insertOne({...user, idUser: payload.idUser, token});
@@ -52,4 +49,20 @@ export async function signIn (req, res) {
 		res.status(500).send(err.message);
 	}
 	
+}
+
+export async function logout (req, res) {
+	const {authorization} = req.headers;
+	const token = authorization?.replace('Bearer ', '');
+	if(!token) return res.sendStatus(401);
+
+	try {
+		const sessions = await session.findOne({token});
+		if(!sessions) return res.sendStatus(401);
+
+		await session.deleteOne({token});
+		res.sendStatus(200);
+	} catch (err) {
+		res.status(500).send(err.message);
+	}
 }
