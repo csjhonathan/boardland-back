@@ -5,6 +5,7 @@ const purchaseSchema = joi.object({
 		joi.object({
 			id: joi.string().required(),
 			name: joi.string().required(),
+			price: joi.number().required(),
 		}).required(),
 	).required(),
 	total: joi.number().required(),
