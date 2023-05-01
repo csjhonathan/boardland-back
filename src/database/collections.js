@@ -5,3 +5,4 @@ export const users = db.collection('users');
 export const session = db.collection('session');
 export const purchases = db.collection('purchases');
 export const carts = db.collection('carts');
+export const history = db.collection('history');
