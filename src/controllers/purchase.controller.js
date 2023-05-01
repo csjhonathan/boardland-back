@@ -1,5 +1,6 @@
 import { purchases, users, games } from '../database/collections.js';
 import { ObjectId } from 'bson';
+import dayjs from 'dayjs';
 
 export async function newPurchase(req, res){
 	const { idUser } = res.locals.session;
@@ -14,7 +15,7 @@ export async function newPurchase(req, res){
 			if (!foundGame) return res.status(404).send(`O jogo ${game.name} não foi encontrado`);
 		});
 
-		await purchases.insertOne({ idUser, games: selectedGames, total, creditCard });
+		await purchases.insertOne({ idUser, games: selectedGames, total, creditCard, date: dayjs(Date.now()).format('DD/MM') });
 		return res.sendStatus(201);
 	} catch (error){
 		return res.status(500).send(error.message);
