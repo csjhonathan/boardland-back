@@ -1,5 +1,5 @@
 import { carts, users } from '../database/collections.js';
-
+import { ObjectId } from 'mongodb';
 export async function updateCart(req, res){
 	const { idUser } = res.locals.session;
 	const { cart, total } = req.body;
@@ -37,4 +37,16 @@ export async function getUserCart(req, res) {
 	} catch (error){
 		return res.status(500).send(error.message);
 	}
+}
+
+
+export async function syncrhonyzeCart(req, res){
+	const {cartId, synchronyzedCart, total} = req.body;
+	try{
+		await carts.updateOne({_id : new ObjectId(cartId)}, {$set : {cart : synchronyzedCart, total}});
+		const cart = await carts.findOne({_id : new ObjectId(cartId)});
+		return res.status(200).send(cart);
+	}catch(err){
+		return res.status(500).send({message : err.message});
+	}	
 }
