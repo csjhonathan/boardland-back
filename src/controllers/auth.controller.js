@@ -7,8 +7,6 @@ export async function signUp (req, res) {
 	
 	try {
 		
-		console.log(await users.find().toArray());
-
 		const user = await users.findOne({ email });
 		if (user) return res.status(409).send('E-mail já cadastrado!');
 		

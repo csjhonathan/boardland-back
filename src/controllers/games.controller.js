@@ -8,7 +8,6 @@ export async function findAllGames(req, res) {
 		res.status(200).send(gamesList);
 
 	}catch(err){
-		console.log(err.message);
 		res.status( 500 ).send( {message : err.message} );
 	}
 }
@@ -23,7 +22,6 @@ export async function postGame(req, res){
 		res.sendStatus(201);
 
 	}catch(err){
-		console.log(err.message);
 		res.status( 500 ).send( {message : err.message} );
 	}
 }
