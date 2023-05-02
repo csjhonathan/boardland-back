@@ -22,7 +22,7 @@ export async function history(req, res){
 			}
 			return h;
 		});
-
+		console.log(historyOrder);
 		res.send(HistoryWithoutCard);
 
 	} catch (err) {

@@ -11,9 +11,9 @@ const purchaseSchema = joi.object({
 	total: joi.number().required(),
 	creditCard: joi.object({
 		number:joi.string().regex(/^[0-9]{16}$/).message('O número cartão deve ser composto por 16 números.').required(),
-		name: joi.string().required(),
-		cvv: joi.string().regex(/^[0-9]{3}$/).message('O código do cartão deve ser 3 números.').required(),
-		validate: joi.string().regex(/^(0[1-9]|1[0-2])\/[0-9]{2}$/).message('O formato da data deve ser em MM/YY.').required()
+		name: joi.string().min(6).pattern(/^[A-Za-zÀ-ÖØ-öø-ÿ]+(\s+[A-Za-zÀ-ÖØ-öø-ÿ]+){1,}$/).message('Informe o nome e sobrenome.').required(),
+		cvv: joi.string().regex(/^[0-9]{3}$/).message('O código do cartão deve ter 3 dígitos numéricos.').required(),
+		validate: joi.string().regex(/^(0[1-9]|1[0-2])\/[0-9]{2}$/).message('O formato da data deve ser em MM/AA (mês e ano).').required()
 	}).required(),
 });
 
