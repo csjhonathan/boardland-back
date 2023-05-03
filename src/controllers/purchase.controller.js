@@ -1,7 +1,7 @@
 import { purchases, users, games } from '../database/collections.js';
 import { ObjectId } from 'bson';
 import dayjs from 'dayjs';
-
+import { emailTemplate, sendEmail} from '../helpers/emailSender.js';
 export async function newPurchase(req, res){
 	const { idUser } = res.locals.session;
 	const { games: selectedGames, total, creditCard } = req.body;
@@ -16,6 +16,8 @@ export async function newPurchase(req, res){
 		});
 
 		await purchases.insertOne({ idUser, games: selectedGames, total, creditCard, date: dayjs(Date.now()).format('DD/MM') });
+		const text = await emailTemplate(idUser);
+		sendEmail(text, user.email);
 		return res.sendStatus(201);
 	} catch (error){
 		return res.status(500).send(error.message);
