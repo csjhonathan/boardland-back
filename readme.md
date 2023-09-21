@@ -2,25 +2,50 @@
 
 O Boardland-Back é o backend de uma plataforma de e-commerce dedicada à venda de jogos de tabuleiro. Ele oferece uma variedade de recursos para gerenciar o fluxo de cadastro, login, carrinho, histórico e compra de jogos. O projeto foi construído usando Node.js, Express, MongoDB e outras tecnologias para fornecer uma experiência segura e eficiente aos usuários.
 
-<h2>Recursos Principais</h2>
+<h2>Tecnologias e Recursos</h2>
 
-**Cadastro de Usuário**: Registro seguro de usuários com senhas criptografadas usando o bcrypt.
+***Cadastro de Usuário (bcrypt)***:
 
-**Login de Usuário**: Autenticação de usuários com geração de tokens JWT.
+bcrypt é uma biblioteca utilizada para realizar a criptografia segura das senhas dos usuários. Ela ajuda a proteger as senhas armazenadas no banco de dados, tornando-as praticamente impossíveis de serem descriptografadas por invasores, mesmo se o banco de dados for comprometido.
 
-**Carrinho de Compras**: Gerenciamento de carrinho de compras para adicionar, remover e finalizar compras.
 
-**Histórico de Compras**: Registro de histórico de compras dos usuários.
+***Login de Usuário (JWT - JSON Web Token)***:
 
-**Envio de Confirmações**: Utilização do Nodemailer para enviar confirmações de compras por e-mail.
+JWT (JSON Web Token) é um método de autenticação que gera tokens criptografados para autenticar usuários. Esses tokens podem ser usados para autorizar o acesso a recursos protegidos no servidor. É uma forma segura e eficiente de gerenciar a autenticação.
 
-**Validação de Dados**: Utilização do Joi para garantir que os dados de entrada sejam válidos.
 
-**Gestão de Datas**: Uso do Day.js para lidar com datas de maneira eficiente.
+***Carrinho de Compras***:
 
-**Comunicação com Frontend**: Configuração do CORS para permitir comunicação entre frontend e backend de forma segura.
+Essa funcionalidade permite aos usuários adicionar, remover e finalizar compras em um site ou aplicativo. O carrinho de compras é usado para manter o controle dos itens selecionados pelos usuários antes de efetivar a compra.
 
-**MongoDB**: Banco de dados não relacional para persistência de dados.
+
+***Histórico de Compras***:
+
+O histórico de compras é um registro que armazena informações sobre todas as compras anteriores de um usuário. Isso permite que os usuários acompanhem suas compras passadas e os administradores do sistema analisem o comportamento de compra dos clientes.
+
+***Envio de Confirmações (Nodemailer)***:
+
+Nodemailer é uma biblioteca que facilita o envio de e-mails a partir de um aplicativo Node.js. Nesse contexto, é usado para enviar confirmações de compras por e-mail aos usuários após a conclusão de uma compra, fornecendo informações sobre a transação.
+
+
+***Validação de Dados (Joi)***:
+
+Joi é uma biblioteca de validação de dados que ajuda a garantir que os dados de entrada fornecidos pelos usuários estejam formatados corretamente e atendam aos critérios especificados. Isso ajuda a evitar erros e ataques de injeção de dados.
+
+
+***Gestão de Datas (Day.js)***:
+
+Day.js é uma biblioteca leve para manipulação de datas em JavaScript. Ela simplifica a formatação, análise e manipulação de datas, tornando a gestão de datas mais eficiente e menos suscetível a erros.
+
+
+***Comunicação com Frontend (CORS)***:
+
+CORS (Cross-Origin Resource Sharing) é uma configuração de segurança que permite que os servidores definam quem pode acessar seus recursos (como APIs) em um domínio diferente. Isso é essencial para permitir uma comunicação segura entre o frontend e o backend de um aplicativo.
+
+
+***MongoDB***:
+
+MongoDB é um banco de dados não relacional (NoSQL) amplamente usado para persistência de dados. Ele é escalável e flexível, adequado para armazenar dados estruturados e semi-estruturados, o que o torna uma escolha popular para aplicativos modernos.
 
 <h2>Pré-requisitos</h2>
 
@@ -54,4 +79,4 @@ Crie um arquivo `.env` na raiz do projeto, como mostra o arquivo `.env.example`.
 
 `npm start` ou `npm run dev` para contar com o hot-reaload.
 
-Caso você receba uma mensagem dizendo que a conexão com o banco foi bem sucedida e que o servidor está rodando em http://localhost:5000(ou na porta que você especificar), é porque a api está pronta para ser utilizada.
+Caso você receba uma mensagem dizendo que a conexão com o banco foi bem sucedida e que o servidor está rodando em http://localhost:5000 (ou na porta que você especificar), é porque a api está pronta para ser utilizada.
