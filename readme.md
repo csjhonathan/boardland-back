@@ -2,6 +2,10 @@
 
 O Boardland-Back é o backend de uma plataforma de e-commerce dedicada à venda de jogos de tabuleiro. Ele oferece uma variedade de recursos para gerenciar o fluxo de cadastro, login, carrinho, histórico e compra de jogos. O projeto foi construído usando Node.js, Express, MongoDB e outras tecnologias para fornecer uma experiência segura e eficiente aos usuários.
 
+<h2>Documentação</h2>
+
+Nós temos uma página especial apenas para disponibilizar a documentação da nossa aplicação, onde descrevemos todos os endpoints disponíveis e e como fazer as requisições. <a href="https://boardland-api.onrender.com/api-docs">Clique aqui</a> para ter acesso a documentação da nossa api.
+
 <h2>Tecnologias e Recursos</h2>
 
 ***Cadastro de Usuário (bcrypt)***:
